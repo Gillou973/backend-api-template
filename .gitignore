@@ -1,0 +1,62 @@
+
+# Node.js
+node_modules/
+.env
+.env.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+*.out
+
+# Build
+dist/
+build/
+
+# Vite cache
+.vite/
+
+# React / Vite
+*.cache
+*.tsbuildinfo
+
+# Tailwind CSS (optionnel : purge ou JIT)
+.tailwind*
+
+# PostgreSQL / SQLite (base locale)
+*.sqlite
+*.sqlite3
+*.db
+*.pgsql
+
+# Uploads / médias
+uploads/
+media/
+public/uploads/
+
+# Tests
+coverage/
+*.test.js
+*.spec.js
+jest.config.js
+vitest.config.*
+
+# IDEs
+.vscode/
+.idea/
+
+# Système d'exploitation
+.DS_Store
+Thumbs.db
+
+# Mac OS Spotlight
+.AppleDouble
+.LSOverride
+
+# Windows metadata
+ehthumbs.db
+Icon?
+Desktop.ini

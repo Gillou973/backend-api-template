@@ -1,0 +1,35 @@
+backend/
+├── src/
+│   ├── config/
+│   │   └── db.js                        # Connexion PostgreSQL
+│   │
+│   ├── controllers/
+│   │   └── user.controller.js          # Logique métier : signup, login, getProfile
+│   │
+│   ├── middlewares/
+│   │   ├── authenticateToken.js        # Vérifie le token JWT
+│   │   └── authorizeRole.js            # Vérifie les rôles (admin, etc.)
+│   │
+│   ├── models/
+│   │   └── (optionnel) user.model.js   # Logique BDD (si séparée du controller)
+│   │
+│   ├── routes/
+│   │   └── user.routes.js              # Routes utilisateurs RESTful
+│   │
+│   ├── validators/
+│   │   └── signup.validator.js         # Validation des données avec Zod
+│   │
+│   ├── utils/                          # (optionnel) fonctions réutilisables
+│   │
+│   ├── app.js                          # Configuration de l'app Express (routes, middlewares)
+│   └── server.js                       # Point d’entrée (listen)
+│
+├── tests/
+│   └── user.test.js                    # Tests HTTP avec Supertest
+│
+├── .env                                # Fichier privé, contient les vrais secrets
+├── .env.example                        # Modèle public des variables d'env
+├── .gitignore                          # Ignore .env, node_modules, etc.
+├── README.md                           # Doc projet : démarrage, routes, etc.
+├── package.json                        # Dépendances, scripts, metadata
+└── package-lock.json                   # Lock des versions (auto généré)
