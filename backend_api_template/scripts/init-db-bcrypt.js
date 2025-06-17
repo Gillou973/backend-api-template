@@ -7,7 +7,7 @@ dotenv.config();
 
 const { Pool } = pg;
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // ou config détaillée
+  connectionString: process.env.DATABASE_URL, // ou config détaillée anuelle avec host/user/password/db
 });
 
 const resetAndInitDB = `
@@ -15,16 +15,17 @@ const resetAndInitDB = `
 
   CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-  CREATE TABLE users (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    nom VARCHAR(100) NOT NULL,
-    prenom VARCHAR(100) NOT NULL,
-    adresse TEXT NOT NULL,
-    email VARCHAR(150) UNIQUE NOT NULL,
-    telephone VARCHAR(20) NOT NULL,
-    date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    password VARCHAR(255),
-    role VARCHAR(20) DEFAULT 'user' NOT NULL CHECK (role IN ('user', 'admin'))
+  CREATE TABLE IF NOT EXISTS public.users (
+      id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+      nom VARCHAR(100) NOT NULL,
+      prenom VARCHAR(100) NOT NULL,
+      adresse TEXT NOT NULL,
+      email VARCHAR(150) NOT NULL UNIQUE,
+      telephone VARCHAR(20) NOT NULL,
+      date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+      password VARCHAR(255),
+      role VARCHAR(20) DEFAULT 'user' NOT NULL CHECK (role IN ('user', 'admin')),
+      is_active BOOLEAN DEFAULT true
   );
 `;
 

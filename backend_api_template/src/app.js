@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import userRoutes from './routes/user.routes.js';
+import morgan from 'morgan';
 
 dotenv.config();
 
@@ -13,11 +14,12 @@ const app = express();
 app.use(cors()); // à sécuriser en prod avec { origin: ... }
 app.use(helmet());
 app.use(express.json());
+app.use(morgan('dev'));
 
 // Routes principales
-app.use('/api/v1/users', userRoutes);
+app.use('/api/users', userRoutes);
 
-// Route racine de test
+/* // Route racine de test
 app.get('/', (req, res) => {
   res.json({ message: 'API opérationnelle 🎉' });
 });
@@ -31,6 +33,6 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Erreur serveur interne' });
-});
+}); */
 
 export default app;
